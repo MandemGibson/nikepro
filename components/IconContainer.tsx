@@ -4,10 +4,12 @@ import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
   name: any;
+  size?: number,
+  onPress?:()=>void
 }
 
-const IconContainer = ({ name }: Props) => {
-  return <Ionicons name={name} size={25} style={styles.iconContainer}/>;
+const IconContainer = ({ name, size=25, onPress }: Props) => {
+  return <Ionicons name={name} size={size} style={styles.iconContainer} onPress={onPress}/>;
 };
 
 export default IconContainer;

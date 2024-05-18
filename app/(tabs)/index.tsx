@@ -14,6 +14,8 @@ import {
 import IconContainer from "@/components/IconContainer";
 import NavList from "@/components/NavList";
 import { useState } from "react";
+import product from "@/components/data/product";
+import { router } from "expo-router";
 
 export default function HomeScreen() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -157,18 +159,91 @@ export default function HomeScreen() {
           {renderDotIndicator()}
         </View>
 
-        <View style={{margin:16, }}>
+        <View style={{ margin: 16 }}>
           <ScrollView
-            style={{ overflow:"visible" }}
+            style={{ overflow: "visible" }}
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            <NavList text="All" selected/>
+            <NavList text="All" selected />
             <NavList text="Running" />
             <NavList text="Sneakers" />
             <NavList text="Formal" />
             <NavList text="Casual" />
           </ScrollView>
+        </View>
+
+        <View style={{ flex: 1, paddingHorizontal: 20 }}>
+          <FlatList
+            data={product}
+            renderItem={({ item: { id, image, price, name } }) => {
+              return (
+                <Pressable
+                  style={{
+                    width: "48%",
+                    borderRadius: 18,
+                    backgroundColor: "#EFEFEF",
+                    height: 230,
+                    marginHorizontal: "1%",
+                    marginVertical: "1%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  key={id}
+                  onPress={()=>router.push(`product/${id}`)}                 
+                >
+                  <Image
+                    source={image}
+                    style={{
+                      width: 160,
+                      height: 100,
+                      overflow: "visible",
+                    }}
+                  />
+                  <View
+                    style={{
+                      width: "100%",
+                      paddingHorizontal: 10,
+                      marginTop:20
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 16,
+                        fontWeight: "700",
+                        lineHeight: 18.77,
+                      }}
+                    >
+                      {name}
+                    </Text>
+                    <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          fontWeight: "500",
+                          lineHeight: 18.77,
+                        }}
+                      >
+                        ${price}
+                      </Text>
+                      <View
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: 10,
+                        }}
+                      >
+                        <IconContainer name="arrow-forward-outline" size={18} />
+                      </View>
+                    </View>
+                  </View>
+                </Pressable>
+              );
+            }}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
+            contentContainerStyle={{ paddingVertical: 10 }}
+            showsVerticalScrollIndicator={false}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -178,7 +253,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"white"
+    backgroundColor: "white",
   },
   body: {
     flex: 1,

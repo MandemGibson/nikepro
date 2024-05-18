@@ -18,6 +18,32 @@ const TabLayout = () => {
           headerShown: false,
         }}
       />
+       {/* <Tabs.Screen
+        name="ProductDetails"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+            />
+          ),
+          headerShown: false,
+        }}
+      /> */}
+      {/*<Tabs.Screen
+        name="profile"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+            />
+          ),
+          headerShown: false,
+        }}
+      /> */}
     </Tabs>
   );
 };
