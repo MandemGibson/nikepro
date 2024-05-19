@@ -1,15 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
   name: any;
-  size?: number,
-  onPress?:()=>void
+  size?: number;
+  onPress?: () => void;
 }
 
-const IconContainer = ({ name, size=25, onPress }: Props) => {
-  return <Ionicons name={name} size={size} style={styles.iconContainer} onPress={onPress}/>;
+const IconContainer = ({ name, size = 25, onPress }: Props) => {
+  return (
+    <Pressable onPress={onPress}>
+      <Ionicons name={name} size={size} style={styles.iconContainer} selectable/>
+    </Pressable>
+  );
 };
 
 export default IconContainer;
